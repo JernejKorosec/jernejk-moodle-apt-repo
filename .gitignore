@@ -1,0 +1,11 @@
+prompts.md
+
+# Local docker build secrets/config
+docker-script/00_config.env
+
+# Do not track numbered scripts folders (versioning is done by git tags)
+scripts/[0-9]*/
+
+# Never commit real env secrets; keep examples
+scripts/**/*.env
+!scripts/**/*.env.example

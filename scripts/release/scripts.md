@@ -1,0 +1,35 @@
+# Scripts (v2)
+
+- apache_fix_for_phpfpm.sh  --  disable mod_php and prepare Apache for FPM.
+- apache_show_status.sh  --  show Apache service status, ports, and vhost configuration.
+- backup_moodledata.sh  --  back up Moodle data directory.
+- backup_www.sh  --  back up web root files.
+- check_db.sh  --  check database client availability/version.
+- check_moodle_code.sh  --  check Moodle code directory state.
+- check_moodle_cron.sh  --  check Moodle cron configuration/execution.
+- check_moodle_db.sh  --  check Moodle database connectivity/state.
+- check_moodle_version.sh  --  read Moodle version from version.php.
+- check_moodledata.sh  --  check Moodle data directory state.
+- check_mysql_versions_installed.sh  --  show installed MySQL client version.
+- check_mysql_versions_online.sh  --  fetch available online MySQL versions.
+- check_stack.sh  --  check server stack/service status.
+- compress_all.sh  --  compress all files in target scope.
+- compress_here.sh  --  compress files in current directory.
+- configure_mysql.sh  --  configure MySQL server settings.
+- decompress_all.sh  --  decompress all archives in target scope.
+- decompress_here.sh  --  decompress archives in current directory.
+- install_mysql.sh  --  install MySQL server packages.
+- list_all_crons.sh  --  list all cron entries.
+- list_php_dirs.sh  --  list PHP directory/config trees.
+- list_php_versions.sh  --  list detected PHP binaries and versions.
+- list_sizes.sh  --  list file and directory sizes.
+- moodle_detect.sh  --  detect Moodle installation details.
+- moodle_migration_pack.sh  --  pack Moodle for migration.
+- moodle_migration_restore.sh  --  restore Moodle from migration package.
+- php_install_versions.sh  --  install selected PHP versions and dependencies.
+- php_switch_version.sh  --  switch active PHP version for CLI/Apache FPM.
+- restrict_apache.sh  --  restrict Apache site access by IP.
+- setup_moodle.sh  --  prepare Moodle code/data directories.
+- setup_moodle_db.sh  --  create Moodle database and user/grants.
+- uninstall_mysql.sh  --  uninstall MySQL packages and remove data directories.
+- update_mysql_apt.sh  --  update MySQL APT configuration package.

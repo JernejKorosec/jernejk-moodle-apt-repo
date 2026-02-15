@@ -1,0 +1,14 @@
+# Release configuration used by commit_new.bat
+# Edit these values for each new release.
+
+RELEASE_TAG=v0.17.0
+PKG_VERSION=0.17.0
+SCRIPTS_DIR=release
+
+COMMIT_MESSAGE=Release moodle-admin-scripts v0.17.0
+TAG_MESSAGE=Release v0.17.0
+
+# true/false
+PUSH=false
+REMOTE=origin
+BRANCH=main
