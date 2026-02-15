@@ -81,7 +81,11 @@ Inside container:
    cp /docker-script/00_config.env.example /docker-script/00_config.env
    ```
 2. Edit `/docker-script/00_config.env` (for example `SCRIPTS_DIR=release`, `RELEASE_TAG`, `PKG_VERSION`, maintainer, key id).
-3. Run in order:
+3. Optional first-time GPG setup:
+   ```bash
+   bash /docker-script/07_gpg_setup.sh
+   ```
+4. Run in order:
    ```bash
    bash /docker-script/01_prepare_build_tree.sh
    bash /docker-script/02_build_deb.sh
@@ -90,7 +94,7 @@ Inside container:
    bash /docker-script/05_repo_sign_metadata.sh
    bash /docker-script/06_smoke_test.sh
    ```
-4. Or run all:
+5. Or run all:
    ```bash
    bash /docker-script/run_all.sh
    ```
@@ -99,6 +103,10 @@ Result:
 - `.deb` is built under `/repo/build`
 - repository metadata is updated under `/repo/dists`
 - package is copied under `/repo/pool`
+
+Note:
+- `run_all.sh` runs steps `01` to `06`.
+- `07_gpg_setup.sh` is a separate helper (typically one-time).
 
 ## Release tracking
 - Script/package releases are tracked by git tags (for example `v0.17.0`), not by numbered scripts folders.

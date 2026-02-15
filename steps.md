@@ -43,7 +43,12 @@ Set at minimum:
 - `MAINTAINER_EMAIL=your-email@example.com`
 - `GPG_KEY_ID=<your key id>` (empty means signing step is skipped)
 
-## 6. Build package and repo metadata (inside container)
+## 6. Optional first-time GPG setup
+```bash
+bash /docker-script/07_gpg_setup.sh
+```
+
+## 7. Build package and repo metadata (inside container)
 Run in order:
 ```bash
 bash /docker-script/01_prepare_build_tree.sh
@@ -58,8 +63,9 @@ Or all at once:
 ```bash
 bash /docker-script/run_all.sh
 ```
+Note: `run_all.sh` runs steps `01` to `06`; `07_gpg_setup.sh` is separate.
 
-## 7. Verify outputs (inside container)
+## 8. Verify outputs (inside container)
 ```bash
 ls -lah /repo/build
 ls -lah /repo/pool/main/m/moodle-admin-scripts
@@ -71,19 +77,19 @@ You should see:
 - `Packages`, `Packages.gz`, `Release`
 - `InRelease` and `Release.gpg` if signing was enabled
 
-## 8. Exit container
+## 9. Exit container
 ```bash
 exit
 ```
 
-## 9. Commit and tag release (host)
+## 10. Commit and tag release (host)
 ```bat
 commit_new.bat
 ```
 Optional push behavior is controlled by `commit.ver`.
 Use `commit_new.bat --help` for detailed field descriptions and examples.
 
-## 10. Configure Ubuntu client to use your GitHub-hosted APT repo
+## 11. Configure Ubuntu client to use your GitHub-hosted APT repo
 Replace `<APT_BASE_URL>` with your published URL where `dists/` and `pool/` are reachable.
 
 Add source:
@@ -102,7 +108,7 @@ sudo apt update
 sudo apt install moodle-admin-scripts
 ```
 
-## 11. Validate installed commands on client
+## 12. Validate installed commands on client
 ```bash
 apache_show_status --help
 php_switch_version --help
