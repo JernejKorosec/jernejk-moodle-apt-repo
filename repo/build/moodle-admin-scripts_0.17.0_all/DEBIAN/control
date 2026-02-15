@@ -1,0 +1,9 @@
+Package: moodle-admin-scripts
+Version: 0.17.0
+Section: admin
+Priority: optional
+Architecture: all
+Maintainer: Jernej K <jernejk.alfa@gmail.com>
+Depends: bash,coreutils,tar,gzip,xz-utils,zstd,curl,ca-certificates
+Description: Moodle/Apache/MySQL/PHP admin helper scripts
+ Script bundle for Moodle environment administration and migration tasks.

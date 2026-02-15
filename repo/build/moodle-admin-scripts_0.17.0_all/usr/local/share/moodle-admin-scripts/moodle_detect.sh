@@ -1,0 +1,205 @@
+#!/usr/bin/env bash
+# HELP BLOCK (auto)
+SCRIPT_NAME="$(basename "$0")"
+SCRIPT_DESC="detect Moodle installation details."
+show_help() {
+  cat <<EOF
+$SCRIPT_NAME
+
+$SCRIPT_DESC
+
+Usage:
+  $SCRIPT_NAME [options]
+
+Help options:
+  -h, --help, -help, help, ?, -?
+EOF
+}
+
+case "${1:-}" in
+  -h|--help|-help|help|\?|-\?)
+    show_help
+    exit 0
+    ;;
+esac
+
+set -euo pipefail
+
+usage() {
+  cat <<'USAGE'
+Usage: moodle_detect.sh [options]
+
+Options:
+  --config PATH   Path to config.php (optional if autodetect works).
+  --vhost PATH    Apache vhost file to search for DocumentRoot (optional).
+  --out PATH      Write detected settings to a file (default: ./moodle_detect.env).
+  --help          Show this help.
+
+Notes:
+  - This script reads config.php as text (no PHP include).
+  - It prints detected Moodle paths, DB config, and PHP versions.
+USAGE
+}
+
+CONFIG_PATH=""
+VHOST_PATH=""
+OUT_PATH="./moodle_detect.env"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --config) CONFIG_PATH="$2"; shift 2;;
+    --vhost) VHOST_PATH="$2"; shift 2;;
+    --out) OUT_PATH="$2"; shift 2;;
+    --help) usage; exit 0;;
+    *) echo "Unknown argument: $1" >&2; usage; exit 1;;
+  esac
+done
+
+if ! command -v php >/dev/null 2>&1; then
+  echo "ERROR: php CLI is required to read Moodle config/version files." >&2
+  exit 1
+fi
+
+find_config() {
+  if [[ -n "$CONFIG_PATH" && -f "$CONFIG_PATH" ]]; then
+    echo "$CONFIG_PATH"; return 0
+  fi
+
+  for p in \
+    /var/www/moodle/config.php \
+    /var/www/html/moodle/config.php \
+    /srv/moodle/config.php \
+    /opt/moodle/config.php; do
+    if [[ -f "$p" ]]; then
+      echo "$p"; return 0
+    fi
+  done
+
+  # Look for config.php in common web roots (depth-limited)
+  for root in /var/www /srv /opt; do
+    if [[ -d "$root" ]]; then
+      local hit
+      hit="$(find "$root" -maxdepth 3 -type f -name config.php 2>/dev/null | head -n1 || true)"
+      if [[ -n "$hit" ]]; then
+        echo "$hit"; return 0
+      fi
+    fi
+  done
+
+  return 1
+}
+
+CONFIG_PATH="$(find_config || true)"
+if [[ -z "$CONFIG_PATH" ]]; then
+  echo "ERROR: Could not locate config.php. Provide --config." >&2
+  exit 1
+fi
+
+php_extract_cfg() {
+  local key="$1"
+  php -r '
+    $config = @file_get_contents($argv[1]);
+    if ($config === false) { exit(1); }
+    $key = preg_quote($argv[2], "/");
+    $patterns = [
+      "/\\$CFG->".$key."\\s*=\\s*\\\"([^\\\"]+)\\\"/i",
+      "/\\$CFG->".$key."\\s*=\\s*\\x27([^\\x27]+)\\x27/i",
+    ];
+    foreach ($patterns as $p) {
+      if (preg_match($p, $config, $m)) { echo $m[1]; exit(0); }
+    }
+    exit(1);
+  ' "$CONFIG_PATH" "$key" 2>/dev/null
+}
+
+DIRROOT="$(php_extract_cfg dirroot || true)"
+DATAROOT="$(php_extract_cfg dataroot || true)"
+WWWROOT="$(php_extract_cfg wwwroot || true)"
+DBTYPE="$(php_extract_cfg dbtype || true)"
+DBHOST="$(php_extract_cfg dbhost || true)"
+DBNAME="$(php_extract_cfg dbname || true)"
+DBUSER="$(php_extract_cfg dbuser || true)"
+DBPASS="$(php_extract_cfg dbpass || true)"
+
+VERSION_PHP="$DIRROOT/version.php"
+read_version_field() {
+  local field="$1"
+  php -r '
+    $content = @file_get_contents($argv[1]);
+    if ($content === false) { exit(1); }
+    $field = preg_quote($argv[2], "/");
+    if (preg_match("/\\$".$field."\\s*=\\s*\\x27([^\\x27]+)\\x27/", $content, $m)) {
+      echo $m[1]; exit(0);
+    }
+    exit(1);
+  ' "$VERSION_PHP" "$field" 2>/dev/null
+}
+
+MOODLE_RELEASE=""
+MOODLE_BRANCH=""
+if [[ -z "$DIRROOT" ]]; then
+  DIRROOT="$(dirname "$CONFIG_PATH")"
+fi
+
+if [[ -f "$VERSION_PHP" ]]; then
+  MOODLE_RELEASE="$(read_version_field release || true)"
+  MOODLE_BRANCH="$(read_version_field branch || true)"
+fi
+
+echo "== Moodle detection =="
+echo "config.php:   $CONFIG_PATH"
+echo "dirroot:      ${DIRROOT:-unknown}"
+echo "dataroot:     ${DATAROOT:-unknown}"
+echo "wwwroot:      ${WWWROOT:-unknown}"
+echo "release:      ${MOODLE_RELEASE:-unknown}"
+echo "branch:       ${MOODLE_BRANCH:-unknown}"
+echo "dbtype:       ${DBTYPE:-unknown}"
+echo "dbhost:       ${DBHOST:-unknown}"
+echo "dbname:       ${DBNAME:-unknown}"
+echo "dbuser:       ${DBUSER:-unknown}"
+echo "dbpass:       ${DBPASS:+(set)}"
+echo
+
+if [[ -n "$DIRROOT" && -d "$DIRROOT" ]]; then
+  echo "dirroot status: OK ($DIRROOT)"
+else
+  echo "dirroot status: MISSING"
+fi
+
+if [[ -n "$DATAROOT" && -d "$DATAROOT" ]]; then
+  echo "dataroot status: OK ($DATAROOT)"
+else
+  echo "dataroot status: MISSING"
+fi
+
+echo
+echo "== PHP versions =="
+for phpbin in /usr/bin/php* /usr/local/bin/php*; do
+  if [[ -x "$phpbin" && ! -d "$phpbin" ]]; then
+    ver=$("$phpbin" -r 'echo PHP_VERSION;' 2>/dev/null || true)
+    if [[ -n "$ver" ]]; then
+      echo "$(basename "$phpbin") -> $ver"
+    fi
+  fi
+done
+
+if [[ -n "$VHOST_PATH" && -f "$VHOST_PATH" ]]; then
+  echo
+  echo "== Apache vhost summary ($VHOST_PATH) =="
+  grep -E "ServerName|ServerAlias|DocumentRoot" -n "$VHOST_PATH" || true
+fi
+
+cat > "$OUT_PATH" <<EOF
+# Generated by moodle_detect.sh on $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+CONFIG_PATH="$CONFIG_PATH"
+DIRROOT="$DIRROOT"
+DATAROOT="$DATAROOT"
+WWWROOT="$WWWROOT"
+DBTYPE="$DBTYPE"
+DBHOST="$DBHOST"
+DBNAME="$DBNAME"
+DBUSER="$DBUSER"
+DBPASS="$DBPASS"
+EOF
+echo
+echo "Settings written to: $OUT_PATH"
