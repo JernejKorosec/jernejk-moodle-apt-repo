@@ -1,0 +1,24 @@
+Origin: JernejK
+Label: JernejK Moodle Repo
+Suite: stable
+Codename: stable
+Architectures: all
+Components: main
+Description: APT repository for Moodle admin scripts
+Date: Sun, 15 Feb 2026 21:39:05 +0000
+MD5Sum:
+ 10138c61099e1560ce2a6de7ae3fc07e              201 Release
+ 8012ee49fa794bdd583adcb6a34c0011              603 main/binary-all/Packages
+ 4f1d78d88cf1dc52ac3e6e0054285024              433 main/binary-all/Packages.gz
+SHA1:
+ 6131f9e9b286aecf67de1cb57a71e6080d804dac              201 Release
+ 1817709faf46cbb21da3e4ee56992d5216fe5d0a              603 main/binary-all/Packages
+ 7690c70cc09b78153fb72acb4d109a2da8b7df27              433 main/binary-all/Packages.gz
+SHA256:
+ ace98e48d183e4bd41c4ca93ae55a746b07fab8923770554fbedab1780b188f6              201 Release
+ f3419a744f29b1c85ca727649eccc85c6689504c4c2196f366f8796e74355c7a              603 main/binary-all/Packages
+ 6388617d2ec14c76071872810858ec808b3dd1cdf64d343e957a3b0ac26e79e5              433 main/binary-all/Packages.gz
+SHA512:
+ 1c8e67276ff5c8dacad9efffa76391e3f3151d382ab6496950f7c5499d549cb14b74680f70537a431169c17324374c0e3e7221c751e232d3f8ebf72d4824e24d              201 Release
+ f6b399b2abbf8d893e7ba87c26c9caa67f990470199ec0a14bc1bc8ad0afa0b4004ad98f3503b11477fa2d633546aa879aae33442fcd2a5caa9711d6e4e19c1b              603 main/binary-all/Packages
+ 81cb3627fa762f0af8625b3059dac67e25eab4dc825db54dd1326296d0da1fd164deae2512cfba6408da78b7ddbe983063ccdb03258c7796a4f5edddd1925b5c              433 main/binary-all/Packages.gz
