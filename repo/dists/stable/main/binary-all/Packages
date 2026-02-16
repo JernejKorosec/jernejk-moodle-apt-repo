@@ -4,10 +4,10 @@ Architecture: all
 Maintainer: Jernej K <jernejk.alfa@gmail.com>
 Depends: bash,coreutils,tar,gzip,xz-utils,zstd,curl,ca-certificates
 Filename: /repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.0_all.deb
-Size: 15984
-MD5sum: 0f9995f186d8d7b8aace3f9dc80d1793
-SHA1: d81df64e9216887c3397c42627ed3cceb29f7942
-SHA256: e83867b2ec7c6213087f6f96fb682a98849185209b3b2621f5fa2e9f2ec4b5d9
+Size: 16012
+MD5sum: 61c1126492d32b37fd39b351071e5001
+SHA1: 2184ed523e1c52457ee6306fc0dcd599f900ccab
+SHA256: 6c1413c26de868cde8ac3aecf9617243e0a6c79d042e54bbbb55e8f376418e5c
 Section: admin
 Priority: optional
 Description: Moodle/Apache/MySQL/PHP admin helper scripts
