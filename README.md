@@ -162,5 +162,6 @@ Note:
 - `commit_new.bat --help` shows full usage and all supported `commit.ver` fields.
 
 ## License
-Copyright (c) 2026 Jernej K.  
-All rights reserved. No license is granted to use, copy, modify, or distribute this software without explicit permission.
+Copyright (c) 2026 Jernej Korošec  
+Permission is granted to use this software solely for non-commercial purposes, including use by non-profit organizations.  
+No right is granted to copy, modify, distribute, sublicense, or sell this software without prior written permission from the copyright holder.
