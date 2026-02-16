@@ -17,6 +17,8 @@ DEBIAN_DIR="$BUILD_DIR/DEBIAN"
 mkdir -p "$DATA_DIR" "$BIN_DIR" "$DEBIAN_DIR"
 
 cp "$SRC_DIR/"*.sh "$DATA_DIR/"
+# Normalize Windows CRLF to Unix LF so shebangs work on Linux.
+sed -i 's/\r$//' "$DATA_DIR/"*.sh
 chmod 755 "$DATA_DIR/"*.sh
 
 cat > "$DEBIAN_DIR/control" <<EOF
