@@ -1,6 +1,9 @@
 # Installation
 
 Install `moodle-admin-scripts` from this GitHub-hosted APT repository on Ubuntu (GPG-signed mode).
+Note:
+- Commands below assume a regular Ubuntu user with `sudo` (usually available by default).
+- If you are already `root` (for example inside Docker), run the same commands without `sudo`.
 
 ## 1) Import repository public key
 ```bash

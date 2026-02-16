@@ -142,13 +142,19 @@ git push
 
 ## 8) Client install from your GitHub APT repo
 On Ubuntu client, add source (example URL, replace with your actual raw/static URL):
-```bash
-echo "deb [signed-by=/usr/share/keyrings/jernejk-repo.gpg] https://<YOUR_APT_BASE_URL> stable main" | sudo tee /etc/apt/sources.list.d/jernejk.list
-```
+Note:
+- Commands below assume a regular Ubuntu user with `sudo` (usually available by default).
+- If you are already `root`, run the same commands without `sudo`.
 
-Install your public key:
+On Ubuntu client, add source (example URL, replace with your actual raw/static URL):
+Install your public key first:
 ```bash
 curl -fsSL https://<YOUR_APT_BASE_URL>/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/jernejk-repo.gpg >/dev/null
+```
+
+Add source:
+```bash
+echo "deb [signed-by=/usr/share/keyrings/jernejk-repo.gpg] https://<YOUR_APT_BASE_URL> stable main" | sudo tee /etc/apt/sources.list.d/jernejk.list
 ```
 
 Update and install:

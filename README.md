@@ -30,6 +30,9 @@ APT repository workspace for building and publishing Debian (`.deb`) packages (U
 
 ## Install On Ubuntu (GPG-Signed APT)
 Use this on a target Linux server after you publish the latest `repo/` to GitHub.
+Note:
+- Commands below assume a regular Ubuntu user with `sudo` (usually available by default).
+- If you are already `root` (for example inside this Docker container), run the same commands without `sudo`.
 
 One-time setup:
 ```bash

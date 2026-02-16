@@ -34,6 +34,10 @@ Commit these files:
 - `repo/public.key`
 
 ## 6) Client side usage
+Note:
+- Commands below assume a regular Ubuntu user with `sudo` (usually available by default).
+- If you are already `root`, run the same commands without `sudo`.
+
 ```bash
 curl -fsSL <APT_BASE_URL>/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/jernejk-repo.gpg >/dev/null
 echo "deb [signed-by=/usr/share/keyrings/jernejk-repo.gpg] <APT_BASE_URL> stable main" | sudo tee /etc/apt/sources.list.d/jernejk.list

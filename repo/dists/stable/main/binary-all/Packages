@@ -3,7 +3,7 @@ Version: 0.17.0
 Architecture: all
 Maintainer: Jernej K <jernejk.alfa@gmail.com>
 Depends: bash,coreutils,tar,gzip,xz-utils,zstd,curl,ca-certificates
-Filename: /repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.0_all.deb
+Filename: pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.0_all.deb
 Size: 16012
 MD5sum: 61c1126492d32b37fd39b351071e5001
 SHA1: 2184ed523e1c52457ee6306fc0dcd599f900ccab
