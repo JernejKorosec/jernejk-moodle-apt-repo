@@ -1,6 +1,10 @@
 @echo off
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
+set "DOCKER_DIR=%~dp0docker"
+set "COMPOSE_FILE=%DOCKER_DIR%\docker-compose.yml"
+set "DOCKERFILE=%DOCKER_DIR%\Dockerfile"
+set "DOCKER_SCRIPT_DIR=docker\docker-script"
 
 if /I "%~1"=="-h" goto :help
 if /I "%~1"=="--help" goto :help
@@ -82,47 +86,47 @@ if errorlevel 1 (
 )
 
 echo [2/6] Building image...
-docker build -t jernejk-moodle-apt-repo-builder .
+docker build -t jernejk-moodle-apt-repo-builder -f "%DOCKERFILE%" "%DOCKER_DIR%"
 if errorlevel 1 (
   echo ERROR: docker build failed.
   exit /b 1
 )
 
 echo [3/6] Starting container...
-docker compose up -d apt-repo
+docker compose -f "%COMPOSE_FILE%" up -d apt-repo
 if errorlevel 1 (
   echo ERROR: docker compose up failed.
   exit /b 1
 )
 
-echo [4/6] Writing docker-script/00_config.env from commit.ver...
-copy /y "docker-script\00_config.env.example" "docker-script\00_config.env" >nul
+echo [4/6] Writing %DOCKER_SCRIPT_DIR%/00_config.env from commit.ver...
+copy /y "%DOCKER_SCRIPT_DIR%\00_config.env.example" "%DOCKER_SCRIPT_DIR%\00_config.env" >nul
 if errorlevel 1 (
-  echo ERROR: Failed to create docker-script\00_config.env.
+  echo ERROR: Failed to create %DOCKER_SCRIPT_DIR%\00_config.env.
   exit /b 1
 )
 
-call :set_key "docker-script\00_config.env" "SCRIPTS_DIR" "%SCRIPTS_DIR%"
+call :set_key "%DOCKER_SCRIPT_DIR%\00_config.env" "SCRIPTS_DIR" "%SCRIPTS_DIR%"
 if errorlevel 1 exit /b 1
-call :set_key "docker-script\00_config.env" "RELEASE_TAG" "%RELEASE_TAG%"
+call :set_key "%DOCKER_SCRIPT_DIR%\00_config.env" "RELEASE_TAG" "%RELEASE_TAG%"
 if errorlevel 1 exit /b 1
-call :set_key "docker-script\00_config.env" "PKG_VERSION" "%PKG_VERSION%"
+call :set_key "%DOCKER_SCRIPT_DIR%\00_config.env" "PKG_VERSION" "%PKG_VERSION%"
 if errorlevel 1 exit /b 1
 if defined GPG_KEY_ID (
-  call :set_key "docker-script\00_config.env" "GPG_KEY_ID" "%GPG_KEY_ID%"
+  call :set_key "%DOCKER_SCRIPT_DIR%\00_config.env" "GPG_KEY_ID" "%GPG_KEY_ID%"
   if errorlevel 1 exit /b 1
 )
 if defined MAINTAINER_NAME (
-  call :set_key "docker-script\00_config.env" "MAINTAINER_NAME" "%MAINTAINER_NAME%"
+  call :set_key "%DOCKER_SCRIPT_DIR%\00_config.env" "MAINTAINER_NAME" "%MAINTAINER_NAME%"
   if errorlevel 1 exit /b 1
 )
 if defined MAINTAINER_EMAIL (
-  call :set_key "docker-script\00_config.env" "MAINTAINER_EMAIL" "%MAINTAINER_EMAIL%"
+  call :set_key "%DOCKER_SCRIPT_DIR%\00_config.env" "MAINTAINER_EMAIL" "%MAINTAINER_EMAIL%"
   if errorlevel 1 exit /b 1
 )
 
 echo [5/6] Running build/sign pipeline in container...
-docker compose exec apt-repo bash -lc "chmod +x /docker-script/*.sh && bash /docker-script/run_all.sh"
+docker compose -f "%COMPOSE_FILE%" exec apt-repo bash -lc "chmod +x /docker-script/*.sh && bash /docker-script/run_all.sh"
 if errorlevel 1 (
   echo ERROR: run_all.sh failed.
   exit /b 1
@@ -175,13 +179,13 @@ echo.
 echo FLOW
 echo   1. Read commit.ver
 echo   2. docker build
-echo   3. docker compose up -d apt-repo
-echo   4. Create/update docker-script\00_config.env
+echo   3. docker compose -f docker\docker-compose.yml up -d apt-repo
+echo   4. Create/update docker\docker-script\00_config.env
 echo   5. Run /docker-script/run_all.sh in container
 echo   6. Run commit_new.bat (commit + tag + optional push)
 echo.
 echo NOTES
-echo   - GPG signing happens in step 5 if GPG_KEY_ID is set in docker-script\00_config.env.
+echo   - GPG signing happens in step 5 if GPG_KEY_ID is set in docker\docker-script\00_config.env.
 echo   - Push behavior is controlled by PUSH/REMOTE/BRANCH in commit.ver.
 echo   - To prepare GPG key first: bash /docker-script/07_gpg_setup.sh
 echo.

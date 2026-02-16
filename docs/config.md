@@ -10,7 +10,7 @@ This file lists user-set values, config files, and generated files for a fresh e
 | File | Required | Purpose | How to create |
 | --- | --- | --- | --- |
 | `commit.ver` | Yes | Release metadata for `deploy.bat` and `commit_new.bat`. | Edit existing file in repo root. |
-| `docker-script/00_config.env` | Yes | Main Docker build/repo-sign config. | `cp docker-script/00_config.env.example docker-script/00_config.env` (or run `deploy.bat`, which writes it). |
+| `docker/docker-script/00_config.env` | Yes | Main Docker build/repo-sign config. | `cp docker/docker-script/00_config.env.example docker/docker-script/00_config.env` (or run `deploy.bat`, which writes it). |
 | `scripts/release/moodle_backup_moodledata.env` | Optional | Persist `DATA_DIR` for backup script. | Copy from `.env.example`. |
 | `scripts/release/moodle_check_code.env` | Optional | Persist `MOODLE_CODE_DIR` for code check script. | Copy from `.env.example`. |
 | `scripts/release/moodle_check_data.env` | Optional | Persist `CONFIG_FILE` for data check script. | Copy from `.env.example`. |
@@ -37,7 +37,7 @@ This file lists user-set values, config files, and generated files for a fresh e
 | `MAINTAINER_NAME` | Optional | `Jane Doe` | Used by `deploy.bat` to populate `00_config.env`. |
 | `MAINTAINER_EMAIL` | Optional | `jane@example.com` | Used by `deploy.bat` to populate `00_config.env`. |
 
-### `docker-script/00_config.env`
+### `docker/docker-script/00_config.env`
 
 | Variable | Required | Example |
 | --- | --- | --- |
@@ -106,8 +106,8 @@ These are not persistent config files, but still require user input when running
 
 | File or pattern | Created/updated by | Notes |
 | --- | --- | --- |
-| `docker-script/00_config.env` | Manual copy or `deploy.bat` | Main runtime config for Docker scripts. |
-| `docker-script/00_config.env.example` | `commit_new.bat` | Updates `SCRIPTS_DIR`, `RELEASE_TAG`, `PKG_VERSION`. |
+| `docker/docker-script/00_config.env` | Manual copy or `deploy.bat` | Main runtime config for Docker scripts. |
+| `docker/docker-script/00_config.env.example` | `commit_new.bat` | Updates `SCRIPTS_DIR`, `RELEASE_TAG`, `PKG_VERSION`. |
 | `repo/build/<pkg>_<ver>_<arch>/DEBIAN/control` | `01_prepare_build_tree.sh` | Generated Debian control file. |
 | `repo/build/<pkg>_<ver>_<arch>.deb` | `02_build_deb.sh` | Built package artifact. |
 | `repo/pool/main/<first-letter>/<pkg>/<pkg>_<ver>_<arch>.deb` | `03_repo_add_package.sh` | Repo package copy. |
@@ -128,11 +128,11 @@ These are not persistent config files, but still require user input when running
 ## 5) Minimal Fresh Setup Checklist
 
 1. Set release values in `commit.ver`.
-2. Create `docker-script/00_config.env` from example (or run `deploy.bat`).
+2. Create `docker/docker-script/00_config.env` from example (or run `deploy.bat`).
 3. (Optional) Run `bash /docker-script/07_gpg_setup.sh` to generate/export key and set `GPG_KEY_ID`.
 4. Build/sign pipeline via `bash /docker-script/run_all.sh` (or `deploy.bat` for full one-click flow).
 5. If needed, create script-local `.env` files in `scripts/release/` to avoid prompts.
 6. Publish/commit generated repo files (`repo/pool`, `repo/dists`, `repo/public.key` when signing).
 7. On Ubuntu client, set `APT_BASE_URL`, import key, add source list, then `apt install moodle-admin-scripts`.
 
-Security note: do not commit real secrets in `.env` files; this repo ignores `scripts/**/*.env` and `docker-script/00_config.env`.
+Security note: do not commit real secrets in `.env` files; this repo ignores `scripts/**/*.env` and `docker/docker-script/00_config.env`.

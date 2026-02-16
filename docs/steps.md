@@ -23,7 +23,7 @@ login.bat
 ```
 or:
 ```powershell
-docker compose exec apt-repo bash
+docker compose -f docker/docker-compose.yml exec apt-repo bash
 ```
 
 ## 5. Prepare build config inside container

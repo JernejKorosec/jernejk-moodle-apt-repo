@@ -77,11 +77,11 @@ if not errorlevel 1 (
   exit /b 1
 )
 
-call :set_key "docker-script\00_config.env.example" "SCRIPTS_DIR" "%SCRIPTS_DIR%"
+call :set_key "docker\docker-script\00_config.env.example" "SCRIPTS_DIR" "%SCRIPTS_DIR%"
 if errorlevel 1 exit /b 1
-call :set_key "docker-script\00_config.env.example" "RELEASE_TAG" "%RELEASE_TAG%"
+call :set_key "docker\docker-script\00_config.env.example" "RELEASE_TAG" "%RELEASE_TAG%"
 if errorlevel 1 exit /b 1
-call :set_key "docker-script\00_config.env.example" "PKG_VERSION" "%PKG_VERSION%"
+call :set_key "docker\docker-script\00_config.env.example" "PKG_VERSION" "%PKG_VERSION%"
 if errorlevel 1 exit /b 1
 
 echo.
@@ -189,7 +189,7 @@ echo   REMOTE         Optional. Default: origin
 echo   BRANCH         Optional. Default: main
 echo.
 echo WHAT IT CHANGES
-echo   Updates these keys in docker-script\00_config.env.example:
+echo   Updates these keys in docker\docker-script\00_config.env.example:
 echo     SCRIPTS_DIR, RELEASE_TAG, PKG_VERSION
 echo   Then commits all staged changes and tags the commit.
 echo.

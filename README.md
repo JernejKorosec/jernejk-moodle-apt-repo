@@ -6,16 +6,29 @@ APT repository workspace for building and publishing Debian (`.deb`) packages (U
 - A Docker Compose service (`apt-repo`) with host/container shared folders for repo content, scripts, build automation, and GPG.
 - Windows helper scripts to start, enter, and stop the container.
 
+## Documentation links
+- [Installation guide](docs/Installation.md)
+- [Configuration](docs/config.md)
+- [Step-by-step flow](docs/steps.md)
+- [Repository map](docs/map.md)
+- [GPG notes](docs/gpg.md)
+- [Click deploy notes](docs/ClickDeploy.md)
+- [Prompt notes](docs/prompts.md)
+- [Docker script README](docs/docker-script/README.md)
+- [Release build notes](docs/scripts/release/build.md)
+- [Release scripts (legacy)](docs/scripts/release/scripts.md)
+- [Release scripts (new)](docs/scripts/release/scripts_new.md)
+
 ## Repository structure
-- `Dockerfile` - Build image with tools such as `dpkg-dev` and `gnupg`.
-- `docker-compose.yml` - Runs the `apt-repo` service and mounts:
-  - `./repo` -> `/repo`
-  - `./scripts` -> `/repo/scripts`
+- `docker/Dockerfile` - Build image with tools such as `dpkg-dev` and `gnupg`.
+- `docker/docker-compose.yml` - Runs the `apt-repo` service and mounts:
+  - `../repo` -> `/repo`
+  - `../scripts` -> `/repo/scripts`
   - `./docker-script` -> `/docker-script`
-  - `./gpg` -> `/root/.gnupg`
+  - `../gpg` -> `/root/.gnupg`
 - `repo/` - Local APT repository content (packages, metadata).
 - `scripts/release/` - Canonical script set used for package builds.
-- `docker-script/` - Ordered Docker-side build scripts for `.deb` creation and APT metadata/signing.
+- `docker/docker-script/` - Ordered Docker-side build scripts for `.deb` creation and APT metadata/signing.
 - `commit.ver` - Release variables file for automated commit/tag flow.
 - `commit_new.bat` - Reads `commit.ver`, commits changes, and creates release tag.
 - `gpg/` - Local GPG keyring used for signing.
@@ -84,29 +97,29 @@ sudo apt install ./moodle-admin-scripts_0.17.0_all.deb
 ## Equivalent Docker commands
 Build image:
 ```powershell
-docker build -t jernejk-moodle-apt-repo-builder .
+docker build -t jernejk-moodle-apt-repo-builder -f docker/Dockerfile docker
 ```
 
 Start service:
 ```powershell
-docker compose up -d apt-repo
+docker compose -f docker/docker-compose.yml up -d apt-repo
 ```
 
 Open shell in running service:
 ```powershell
-docker compose exec apt-repo bash
+docker compose -f docker/docker-compose.yml exec apt-repo bash
 ```
 
 Stop service:
 ```powershell
-docker compose down
+docker compose -f docker/docker-compose.yml down
 ```
 
 ## Notes
 - Shared host/container folders are:
   - `repo/` <-> `/repo`
   - `scripts/` <-> `/repo/scripts`
-  - `docker-script/` <-> `/docker-script`
+  - `docker/docker-script/` <-> `/docker-script`
   - `gpg/` <-> `/root/.gnupg`
 
 ## Build pipeline (current)

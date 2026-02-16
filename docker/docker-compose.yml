@@ -1,12 +1,14 @@
+name: jernejk-moodle-apt-repo
+
 services:
   apt-repo:
     build: .
     container_name: jernejk-moodle-apt-repo-builder
     volumes:
-      - ./repo:/repo
-      - ./scripts:/repo/scripts
+      - ../repo:/repo
+      - ../scripts:/repo/scripts
       - ./docker-script:/docker-script
-      - ./gpg:/root/.gnupg
+      - ../gpg:/root/.gnupg
     working_dir: /repo
     stdin_open: true
     tty: true

@@ -3,7 +3,7 @@
 Goal: package scripts as a real Debian package (`.deb`), add it to this repository APT structure, sign metadata, and make it installable via `apt`.
 
 ## 0) Prerequisites
-Run from the project root directory on host (the folder containing `start.bat`, `docker-compose.yml`, and `scripts/`).
+Run from the project root directory on host (the folder containing `start.bat`, `docker/docker-compose.yml`, and `scripts/`).
 
 Start container and login:
 ```bat

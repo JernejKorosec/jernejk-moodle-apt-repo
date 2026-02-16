@@ -9,9 +9,9 @@ flowchart TD
   C --> V{"Config valid and scripts/release exists?"}
   V -- No --> E1["Stop with error"]
   V -- Yes --> D1["docker build image"]
-  D1 --> D2["docker compose up -d apt-repo"]
-  D2 --> W1["Write docker-script/00_config.env"]
-  W1 --> R1["Run docker-script/run_all.sh"]
+  D1 --> D2["docker compose -f docker/docker-compose.yml up -d apt-repo"]
+  D2 --> W1["Write docker/docker-script/00_config.env"]
+  W1 --> R1["Run /docker-script/run_all.sh"]
   R1 --> S1["01_prepare_build_tree.sh"]
   S1 --> S2["02_build_deb.sh"]
   S2 --> S3["03_repo_add_package.sh"]
@@ -39,10 +39,10 @@ flowchart TD
 flowchart LR
   CV["commit.ver"] --> DEP["deploy.bat"]
   CV --> COM["commit_new.bat"]
-  EX["docker-script/00_config.env.example"] --> DEP
-  DEP --> CFG["docker-script/00_config.env"]
+  EX["docker/docker-script/00_config.env.example"] --> DEP
+  DEP --> CFG["docker/docker-script/00_config.env"]
 
-  DEP --> RUN["docker-script/run_all.sh"]
+  DEP --> RUN["/docker-script/run_all.sh"]
   RUN --> P1["01_prepare_build_tree.sh"]
   RUN --> P2["02_build_deb.sh"]
   RUN --> P3["03_repo_add_package.sh"]

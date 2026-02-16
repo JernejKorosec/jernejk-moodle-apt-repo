@@ -11,7 +11,7 @@ deploy.bat
 2. Validates required values (`RELEASE_TAG`, `PKG_VERSION`, `SCRIPTS_DIR`, etc.).
 3. Verifies Docker daemon is running.
 4. Builds image and starts container (`apt-repo`).
-5. Creates/updates `docker-script/00_config.env` from `commit.ver` values.
+5. Creates/updates `docker/docker-script/00_config.env` from `commit.ver` values.
 6. Runs Docker build pipeline inside container:
    - `bash /docker-script/run_all.sh`
 7. Runs release commit/tag flow:
