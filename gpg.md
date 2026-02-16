@@ -19,7 +19,7 @@ bash /docker-script/07_gpg_setup.sh
 What it does:
 - lets you generate a new key (optional)
 - lists your secret keys
-- asks for key ID/email
+- asks for key ID/email/fingerprint (stores resolved fingerprint)
 - exports public key to `/repo/public.key`
 - writes `GPG_KEY_ID` into `/docker-script/00_config.env`
 

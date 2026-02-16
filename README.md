@@ -28,6 +28,38 @@ APT repository workspace for building and publishing Debian (`.deb`) packages (U
 - Docker Compose v2 (`docker compose`)
 - Windows (for `.bat` helper scripts)
 
+## Install On Ubuntu (GPG-Signed APT)
+Use this on a target Linux server after you publish the latest `repo/` to GitHub.
+
+One-time setup:
+```bash
+APT_BASE_URL="https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo"
+
+curl -fsSL "$APT_BASE_URL/public.key" \
+  | gpg --dearmor \
+  | sudo tee /usr/share/keyrings/jernejk-moodle-apt-repo.gpg >/dev/null
+
+echo "deb [arch=all signed-by=/usr/share/keyrings/jernejk-moodle-apt-repo.gpg] $APT_BASE_URL stable main" \
+  | sudo tee /etc/apt/sources.list.d/jernejk-moodle-apt-repo.list >/dev/null
+
+sudo apt update
+sudo apt install moodle-admin-scripts
+```
+
+Daily usage (simple):
+```bash
+sudo apt update
+sudo apt install moodle-admin-scripts
+sudo apt upgrade moodle-admin-scripts
+```
+
+Direct `.deb` fallback (without apt repo metadata):
+```bash
+curl -fL -o moodle-admin-scripts_0.17.0_all.deb \
+  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.0_all.deb"
+sudo apt install ./moodle-admin-scripts_0.17.0_all.deb
+```
+
 ## Quick start (Windows)
 1. Start container:
    ```bat

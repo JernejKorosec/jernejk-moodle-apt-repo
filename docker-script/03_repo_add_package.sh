@@ -14,7 +14,12 @@ BIN_DIR="$REPO_ROOT/dists/$DIST_CODENAME/$DIST_COMPONENT/binary-$PKG_ARCH"
 mkdir -p "$POOL_DIR" "$BIN_DIR"
 cp -f "$DEB" "$POOL_DIR/"
 
-dpkg-scanpackages "$REPO_ROOT/pool" /dev/null > "$BIN_DIR/Packages"
+# Run from repo root so Package "Filename" entries are relative (pool/...)
+# and valid for remote HTTP apt clients.
+(
+  cd "$REPO_ROOT"
+  dpkg-scanpackages pool /dev/null > "$BIN_DIR/Packages"
+)
 gzip -kf "$BIN_DIR/Packages"
 
 echo "Package copied and Packages index refreshed."
