@@ -1,0 +1,5 @@
+# GitHub Pages note:
+# Mermaid rendering for this site is handled by client-side JS in
+# `_includes/head-custom.html`.
+# GitHub repository Markdown pages render Mermaid natively, but
+# GitHub Pages output needs this explicit include.
