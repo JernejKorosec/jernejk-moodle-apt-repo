@@ -13,7 +13,6 @@ APT repository workspace for building and publishing Debian (`.deb`) packages (U
 - [Repository map](docs/map.md)
 - [GPG notes](docs/gpg.md)
 - [Click deploy notes](docs/ClickDeploy.md)
-- [Prompt notes](docs/prompts.md)
 - [Docker script README](docs/docker-script/README.md)
 - [Release build notes](docs/scripts/release/build.md)
 - [Release scripts (legacy)](docs/scripts/release/scripts.md)
