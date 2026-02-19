@@ -27,6 +27,7 @@ APT repository workspace for building and publishing Debian (`.deb`) packages (U
   - `../gpg` -> `/root/.gnupg`
 - `repo/` - Local APT repository content (packages, metadata).
 - `scripts/release/` - Canonical script set used for package builds.
+- `linux-client/` - End-user helper scripts for install/update/uninstall on Ubuntu/Debian clients.
 - `docker/docker-script/` - Ordered Docker-side build scripts for `.deb` creation and APT metadata/signing.
 - `commit.ver` - Release variables file for automated commit/tag flow.
 - `commit_new.bat` - Reads `commit.ver`, commits changes, and creates release tag.
@@ -64,15 +65,23 @@ sudo apt install moodle-admin-scripts
 Daily usage (simple):
 ```bash
 sudo apt update
-sudo apt install moodle-admin-scripts
-sudo apt upgrade moodle-admin-scripts
+sudo apt install --only-upgrade moodle-admin-scripts
+```
+
+Linux client helper scripts (optional):
+```bash
+BASE_URL="https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/linux-client"
+curl -fLO "$BASE_URL/install_repo_and_package.sh"
+curl -fLO "$BASE_URL/update_package.sh"
+curl -fLO "$BASE_URL/uninstall_package_and_repo.sh"
+chmod +x install_repo_and_package.sh update_package.sh uninstall_package_and_repo.sh
 ```
 
 Direct `.deb` fallback (without apt repo metadata):
 ```bash
-curl -fL -o moodle-admin-scripts_0.17.0_all.deb \
-  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.0_all.deb"
-sudo apt install ./moodle-admin-scripts_0.17.0_all.deb
+curl -fL -o moodle-admin-scripts_0.17.1_all.deb \
+  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.1_all.deb"
+sudo apt install ./moodle-admin-scripts_0.17.1_all.deb
 ```
 
 ## Quick start (Windows)
@@ -156,7 +165,7 @@ Note:
 - `07_gpg_setup.sh` is a separate helper (typically one-time).
 
 ## Release tracking
-- Script/package releases are tracked by git tags (for example `v0.17.0`), not by numbered scripts folders.
+- Script/package releases are tracked by git tags (for example `v0.17.1`), not by numbered scripts folders.
 - Use `commit.ver` + `commit_new.bat` to standardize release commits and tags.
 - `commit_new.bat --help` shows full usage and all supported `commit.ver` fields.
 

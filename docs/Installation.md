@@ -26,7 +26,22 @@ sudo apt update
 sudo apt install moodle-admin-scripts
 ```
 
-## 5) Quick verification
+## 5) Update package later
+```bash
+sudo apt update
+sudo apt install --only-upgrade moodle-admin-scripts
+```
+
+## 6) Optional helper scripts
+```bash
+BASE_URL="https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/linux-client"
+curl -fLO "$BASE_URL/install_repo_and_package.sh"
+curl -fLO "$BASE_URL/update_package.sh"
+curl -fLO "$BASE_URL/uninstall_package_and_repo.sh"
+chmod +x install_repo_and_package.sh update_package.sh uninstall_package_and_repo.sh
+```
+
+## 7) Quick verification
 ```bash
 apache_show_status --help
 php_switch_version --help
@@ -35,7 +50,7 @@ moodle_setup --help
 
 ## Optional direct `.deb` install
 ```bash
-curl -fL -o moodle-admin-scripts_0.17.0_all.deb \
-  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.0_all.deb"
-sudo apt install ./moodle-admin-scripts_0.17.0_all.deb
+curl -fL -o moodle-admin-scripts_0.17.1_all.deb \
+  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.1_all.deb"
+sudo apt install ./moodle-admin-scripts_0.17.1_all.deb
 ```

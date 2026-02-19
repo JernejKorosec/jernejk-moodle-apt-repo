@@ -8,34 +8,34 @@ Codename: stable
 Architectures: all
 Components: main
 Description: APT repository for Moodle admin scripts
-Date: Mon, 16 Feb 2026 01:31:53 +0000
+Date: Thu, 19 Feb 2026 20:50:01 +0000
 MD5Sum:
- 0531a9deadcde6eaf9b9963658e686fa              201 Release
- 1541f403fe94ccbcafd6ecd2a50a4ba9              597 main/binary-all/Packages
- 30584fae5abcbb5f7b8ac09de710e880              428 main/binary-all/Packages.gz
+ 3d531141c5c49f4f495b86d2e16af344              201 Release
+ b05e8da3c5622f4ad5e099817478ee50              597 main/binary-all/Packages
+ 0380534d020df4e9acd9314a97b7653b              428 main/binary-all/Packages.gz
 SHA1:
- 48a31cb6edb580ccc306b834065d8d0fe68c0539              201 Release
- 30d1e361143d94b13509b3bb540fa5065982fd3f              597 main/binary-all/Packages
- 759152a740a3af94bf0fc670f552f89dfc424983              428 main/binary-all/Packages.gz
+ a4d56a09b184d093279326e8dfb0b0626146b2e9              201 Release
+ 1b4ee19e7d41f9c12be6058a0c52653b6d0acc38              597 main/binary-all/Packages
+ d3c1b25e7297ec1a38c94ec7e060d80362b97b7c              428 main/binary-all/Packages.gz
 SHA256:
- 27e63bc0fc158a6a6daf8f8d1217e6614f004bc7e1310de5b3f87961a26247ea              201 Release
- d9b10bc09618567c5bbffc78ec6c1b6d50bfa3d29bb5f494d94d4cb2e14a5be0              597 main/binary-all/Packages
- 528ac1ea743058d8b114f36b59b7070d1cb700aa917166c26820b1cc332f733e              428 main/binary-all/Packages.gz
+ 0e6e2591025df33f0161e648fec4af93cfc78316667e58c0b2c7351019811334              201 Release
+ a40306f5ce8c3ff7912ce24317130686540de13d882ca06c35160cf5c2977caf              597 main/binary-all/Packages
+ 877c1351c879064c7a509ac0e15eafb8d6aa097e1f1c61c2b81589bece959090              428 main/binary-all/Packages.gz
 SHA512:
- fedf6d2dd8c714b8b775d2a6e6e128c467ba8cd80c2793481ec5f941145efc4c276bf6f27ffa8bdea35074ad3ee564a43df602552b3ef73120e22687e2e68f37              201 Release
- 8b84c840997868d892dce93f9e7783cde977556a477cea16c0f26a785b62ed09b5c81705c8a9c1346cb7db2b8b897d1e2059295f7105dc375f5d26456367700e              597 main/binary-all/Packages
- 1254ae72b35d1d893daae58fbb9f1ebf788836d04db7ae31f32ede721ad92bb1a99f11cd4039f33f472d8e11203308daceb90581d64f7b8ff4d8f25e5f232099              428 main/binary-all/Packages.gz
+ 83a3697f149c5a8481e0be38c9cfc5fcaf84a4b3982d6eb0dd2d26e33ea7bf6d103dc341266ff3815cb1619bb608dc2be81a60e2ae4afa2443697c46db80fb4e              201 Release
+ c3783a83a3a479bb21de9d59161a5f83b763bde9a4a173b37beab9e555064f1a54b6946961d39021257e5ad2bc9d8656f7f10b5f17b92f507026a879e727efa9              597 main/binary-all/Packages
+ 9a4398ee4e381b65c40c94ed3c36a122732d882f35b4a2e10698544c78c5a881dc21c0634b40bad517fd5f7d5fb2a9aa7ad981ff4898ddb32ee429a0311b567e              428 main/binary-all/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQGzBAEBCgAdFiEE21tKHgK8xFyvIMKvqbqoPyzAWfUFAmmSc5EACgkQqbqoPyzA
-WfXelgwAjC5UHgaPozK7egXBOD+0u0+8EhU4s+xWxKtf/Y8fuFHewVs4kOzGLd1s
-J9JO6UDI1dqJDeJvfY0J5g6K4Z5hY/4n1RMqQM/ADIv9vJNerZwUFh0DMVWfVfRC
-78vnCfpmfoGlJAzjpfymhJ8WRIuiRgtz7JGCFna9gzw6SKjRoWQ7EJT0nArENDvZ
-LHBoU1WheecpVPVbJHJz9pCmricgZnRYfa7FwynLPljNJUxd2K/MYFAE1tFCm7AU
-g1+ZOjUPTCzPymi67UalAfToqbUMRTuhF7RP7ko8mt/ag8HwA6Th/iRvAfGAHDSa
-z29rgZ7lWGfD0mwTa3/pvw21ZmGpLn8+Lw76cCDJQvBKLFCuuIvguoZMDJg4PTGq
-s5DvV+2610QwHxTaU53/tQz4YgXhePYuswACVBJnAqhADd/gY8VpWaloVyCCgwRZ
-GbDHBPrOOCrrBk5O/SmutlJupzvW1xvlVQVV08+S9Ya/0NhJGQw+C41NqUNJpd+b
-L5VH38MS
-=512F
+iQGzBAEBCgAdFiEE21tKHgK8xFyvIMKvqbqoPyzAWfUFAmmXd5UACgkQqbqoPyzA
+WfUzrgv/UPbRMp7ILdx2cQv5P+Gm2F8d4s0IuMdQQAGHHYCpsKBRkmJkqzupvJoQ
+YNZ8jEl1Zbw9Z5UIodb43nSehoNnZmm3nH9S6WmGTzkuMCkwx/2O7X7+C3xhAkGP
+S+hG5EnDlDOwdusfYEZUQ7S5xQkGQ7oMkyZ8Z9GU9fLNqPSDc1/oGwQKul7Bhybq
+fWYSE2DwS7MQriqpSUfzPS9wU5qSNvyBh/7o8fTl2kLFYoeue9Um0ybAI7L9SpF2
+cd9bwbaQDY4Mg79MUZSHqezJxZpfiZ6msK/iMSZ3wJ3WOkUBF0nTjjOyREkFoLDf
+3883U8RTTksvIzTQ7usWotq8aBuU3S1OVM8W8NIzR2K1enpo+tBquU/MxgXFCciq
+yumAAHyNfqnehdy0NiQHQ6M8ncy1YERNCeKuvBLtWYpIauOkhCuoYOwyMoI97kn4
+5JbafqvJrc5c4pv1v0B4cReEnJtjTo8gWoOl1ZSpvcsdoc3NBI8l4MjchBZLpTzQ
+mV/7CECN
+=InbK
 -----END PGP SIGNATURE-----

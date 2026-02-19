@@ -1,15 +1,9 @@
 Package: moodle-admin-scripts
 Version: 0.17.1
+Section: admin
+Priority: optional
 Architecture: all
 Maintainer: Jernej K <jernejk.alfa@gmail.com>
 Depends: bash,coreutils,tar,gzip,xz-utils,zstd,curl,ca-certificates
-Filename: pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.1_all.deb
-Size: 16008
-MD5sum: bc6e8e01e0b710ec626638008c59d931
-SHA1: d5b325b3214ac651cd8a05a5ba21033841d372ac
-SHA256: 20b90bbef18df58e521e4f747816a90d23b982b581a32ae347d70fa36944ffee
-Section: admin
-Priority: optional
 Description: Moodle/Apache/MySQL/PHP admin helper scripts
  Script bundle for Moodle environment administration and migration tasks.
-
