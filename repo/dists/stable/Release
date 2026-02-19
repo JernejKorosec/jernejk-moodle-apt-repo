@@ -5,20 +5,20 @@ Codename: stable
 Architectures: all
 Components: main
 Description: APT repository for Moodle admin scripts
-Date: Thu, 19 Feb 2026 20:50:01 +0000
+Date: Thu, 19 Feb 2026 21:14:48 +0000
 MD5Sum:
- 3d531141c5c49f4f495b86d2e16af344              201 Release
- b05e8da3c5622f4ad5e099817478ee50              597 main/binary-all/Packages
- 0380534d020df4e9acd9314a97b7653b              428 main/binary-all/Packages.gz
+ e4911495cd920b686c8e49bb81d857eb              201 Release
+ 5358462a628eafd0fd1de33bdc2d14c1              597 main/binary-all/Packages
+ 411ee754aff5cdad594a5b26206820c7              429 main/binary-all/Packages.gz
 SHA1:
- a4d56a09b184d093279326e8dfb0b0626146b2e9              201 Release
- 1b4ee19e7d41f9c12be6058a0c52653b6d0acc38              597 main/binary-all/Packages
- d3c1b25e7297ec1a38c94ec7e060d80362b97b7c              428 main/binary-all/Packages.gz
+ 70066826cc48b5d1d5675cfb07c470942b38ef61              201 Release
+ 455d5811210cfa098b3c05aec674561d82450059              597 main/binary-all/Packages
+ f0b8928de0586e81919b809119587b33c0a2323d              429 main/binary-all/Packages.gz
 SHA256:
- 0e6e2591025df33f0161e648fec4af93cfc78316667e58c0b2c7351019811334              201 Release
- a40306f5ce8c3ff7912ce24317130686540de13d882ca06c35160cf5c2977caf              597 main/binary-all/Packages
- 877c1351c879064c7a509ac0e15eafb8d6aa097e1f1c61c2b81589bece959090              428 main/binary-all/Packages.gz
+ 2908015ed8fec2edef632730d157a33cafa6654b161e364e3a82c4a3e655babd              201 Release
+ 744b06480e75ccac3191041820f08d28ac7621f6a2190d4936066a8bdb293d05              597 main/binary-all/Packages
+ d2c916fccb2adf24f5b617d6a912934fcd752f05c8d6998920d9ce60b3a5a6ae              429 main/binary-all/Packages.gz
 SHA512:
- 83a3697f149c5a8481e0be38c9cfc5fcaf84a4b3982d6eb0dd2d26e33ea7bf6d103dc341266ff3815cb1619bb608dc2be81a60e2ae4afa2443697c46db80fb4e              201 Release
- c3783a83a3a479bb21de9d59161a5f83b763bde9a4a173b37beab9e555064f1a54b6946961d39021257e5ad2bc9d8656f7f10b5f17b92f507026a879e727efa9              597 main/binary-all/Packages
- 9a4398ee4e381b65c40c94ed3c36a122732d882f35b4a2e10698544c78c5a881dc21c0634b40bad517fd5f7d5fb2a9aa7ad981ff4898ddb32ee429a0311b567e              428 main/binary-all/Packages.gz
+ a31eaaa7ef2313d15b943a0f951d6da51b274077ae5780aa30b8fb2cf43db325224a033f00f4ba8a4cb9a047ee124aafef6c932a038e2c220b70226c6e56f531              201 Release
+ 1037c86ad0b26d9e6bd6dc162bbfa7d640a14ea53812ab09e5d32a7a0925b8a353fecb7d85c6bf6fb25b0dd0a49de1701c5ac5458c655f6fbc4a7fe70485e2ea              597 main/binary-all/Packages
+ 53b7dd0d983103f3a78a242e8e9991b2a452ba6cc549ba73cd5f9b106c263768a17fa730b23a376093ee1ec12d7a3274e9dfa4402bbc038bc5c1de4cb102e849              429 main/binary-all/Packages.gz

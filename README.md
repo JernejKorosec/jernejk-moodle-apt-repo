@@ -79,9 +79,9 @@ chmod +x install_repo_and_package.sh update_package.sh uninstall_package_and_rep
 
 Direct `.deb` fallback (without apt repo metadata):
 ```bash
-curl -fL -o moodle-admin-scripts_0.17.1_all.deb \
-  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.1_all.deb"
-sudo apt install ./moodle-admin-scripts_0.17.1_all.deb
+curl -fL -o moodle-admin-scripts_0.17.2_all.deb \
+  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.2_all.deb"
+sudo apt install ./moodle-admin-scripts_0.17.2_all.deb
 ```
 
 ## Quick start (Windows)
@@ -165,7 +165,7 @@ Note:
 - `07_gpg_setup.sh` is a separate helper (typically one-time).
 
 ## Release tracking
-- Script/package releases are tracked by git tags (for example `v0.17.1`), not by numbered scripts folders.
+- Script/package releases are tracked by git tags (for example `v0.17.2`), not by numbered scripts folders.
 - Use `commit.ver` + `commit_new.bat` to standardize release commits and tags.
 - `commit_new.bat --help` shows full usage and all supported `commit.ver` fields.
 

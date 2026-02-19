@@ -50,7 +50,7 @@ moodle_setup --help
 
 ## Optional direct `.deb` install
 ```bash
-curl -fL -o moodle-admin-scripts_0.17.1_all.deb \
-  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.1_all.deb"
-sudo apt install ./moodle-admin-scripts_0.17.1_all.deb
+curl -fL -o moodle-admin-scripts_0.17.2_all.deb \
+  "https://raw.githubusercontent.com/JernejKorosec/jernejk-moodle-apt-repo/main/repo/pool/main/m/moodle-admin-scripts/moodle-admin-scripts_0.17.2_all.deb"
+sudo apt install ./moodle-admin-scripts_0.17.2_all.deb
 ```
